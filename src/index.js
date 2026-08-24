@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import dns from "dns";
-import connectDB from "../db/index.js";
+import connectDB from "./db/index.js";
 
 dotenv.config();
 
