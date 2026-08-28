@@ -24,4 +24,13 @@ app.use(express.static("public"));
 // 5. Cookie Parser (Enables CRUD operations on secure user browser cookies from server)
 app.use(cookieParser());
 
+
+
+// Routes import
+import userRouter from "./routes/user.routes.js";
+
+// Routes declaration (using app.use for mounting routers)
+// URL Format: http://localhost:8000/api/v1/users/register
+app.use("/api/v1/users", userRouter);
+
 export { app };
