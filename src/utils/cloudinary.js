@@ -1,7 +1,3 @@
-export const upload = multer({
-    storage,
-})
-
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 

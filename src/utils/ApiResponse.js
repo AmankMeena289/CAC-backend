@@ -3,8 +3,7 @@ class ApiResponse {
     this.statusCode = statusCode;
     this.data = data;
     this.message = message;
-    // Standard HTTP response codes below 400 indicate success
-    this.success = statusCode < 400;
+    this.success = statusCode < 400; // below 400 indicate succes
   }
 }
 
