@@ -53,10 +53,10 @@ const userSchema = new Schema(
 
 // Pre-save hook: Hash password before saving to DB
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password")) return ;
 
   this.password = await bcrypt.hash(this.password, 10);
-  next();
+  // next();
 });
 
 // Custom Method: Verify password validity
