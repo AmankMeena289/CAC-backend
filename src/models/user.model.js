@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+
 const userSchema = new Schema(
   {
     username: {
@@ -52,16 +53,17 @@ const userSchema = new Schema(
 );
 
 // Pre-save hook: Hash password before saving to DB
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return ;
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
 
   this.password = await bcrypt.hash(this.password, 10);
-  // next();
 });
 
 // Custom Method: Verify password validity
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
+  // password is what we give during login attempt 
+  //this.password is the original Password stord in DB.
 };
 
 // Custom Method: Generate short-lived Access Token (JWT)
