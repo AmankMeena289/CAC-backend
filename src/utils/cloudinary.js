@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-import { ApiResponse } from "./ApiResponse";
+import { ApiResponse } from "./ApiResponse.js";
 
 // Configure Cloudinary credentials from environment variables
 cloudinary.config({
