@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import { ApiResponse } from "./ApiResponse";
 
 // Configure Cloudinary credentials from environment variables
 cloudinary.config({
@@ -33,4 +34,22 @@ const uploadOnCloudinary = async (localFilePath) => {
   }
 };
 
-export { uploadOnCloudinary };
+const deleteFromCloudinary = async (cloudinaryFileUrl) =>{
+  try {
+    if(!cloudinaryFileUrl){
+      return null;
+    }
+
+    const publicId = cloudinaryFileUrl.split("/").pop().split(".")[0];
+
+    const response = await cloudinary.uploader.destroy(publicId , {
+      resource_type : "image",
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error deleting file from Cloudinary"); 
+  }
+}
+
+export { uploadOnCloudinary,deleteFromCloudinary};
